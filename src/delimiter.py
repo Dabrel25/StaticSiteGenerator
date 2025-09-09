@@ -1,10 +1,12 @@
+import re
+
 from src.textnode import TextType, TextNode
 
 
 def split_nodes_delimiter(old_nodes,delimiter,text_type):
     nodes = []
     for old_node in old_nodes:
-        if old_node.text_type is not TextType.TEXT:
+        if old_node.text_type is not TextType.text:
             nodes.append(old_node)
 
         else:
@@ -22,6 +24,62 @@ def split_nodes_delimiter(old_nodes,delimiter,text_type):
             nodes.extend(new_nodes)
     return nodes
 
+def extract_markdown_images(text):
+    return re.findall(r"!\[([^\[\]]*)\]\(([^\(\)]*)\)", text)
 
+def extract_markdown_links(text):
+    return re.findall(r"(?<!!)\[([^\[\]]*)\]\(([^\(\)]*)\)", text)
 
+# python
+def split_nodes_image(old_nodes):
+    new_nodes = []
+    for node in old_nodes:
+        if node.text_type != TextType.TEXT:
+            new_nodes.append(node)
+            continue
+
+        text = node.text
+        while True:
+            pairs = extract_markdown_images(text)
+            if not pairs:
+                if text:
+                    new_nodes.append(TextNode(text, TextType.TEXT))
+                break
+
+            alt, url = pairs[0]
+            needle = f"[!{alt}]({url})"
+            before, after = text.split(needle, 1)
+
+            if before:
+                new_nodes.append(TextNode(before, TextType.TEXT))
+
+            new_nodes.append(TextNode(alt, TextType.IMAGES, url))
+            text = after
+    return new_nodes
+
+def split_nodes_link(old_nodes):
+    new_nodes = []
+    for node in old_nodes:
+        if node.text_type != TextType.TEXT:
+            new_nodes.append(node)
+            continue
+
+        text = node.text
+        while True:
+            pairs = extract_markdown_links(text)
+            if not pairs:
+                if text:
+                    new_nodes.append(TextNode(text, TextType.TEXT))
+                break
+
+            label, url = pairs[0]
+            needle = f"[{label}]({url})"
+            before, after = text.split(needle, 1)
+
+            if before:
+                new_nodes.append(TextNode(before, TextType.TEXT))
+
+            new_nodes.append(TextNode(label, TextType.LINKS, url))
+            text = after
+    return new_nodes
 

@@ -8,5 +8,6 @@ def main():
 
     print(TextNode(text, text_type, url))
 
+
 main()
 
