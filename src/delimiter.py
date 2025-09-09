@@ -83,3 +83,22 @@ def split_nodes_link(old_nodes):
             text = after
     return new_nodes
 
+
+def text_to_textnodes(text):
+    if text is None:
+        raise ValueError("text must not be None")
+    if text == "":                 # decide behavior explicitly
+        return []                  # we’ll return an empty list for ""
+
+    nodes = [TextNode(text, TextType.TEXT)]
+
+    nodes = split_nodes_delimiter(nodes, "`", TextType.CODE)
+
+    nodes = split_nodes_image(nodes)
+    nodes = split_nodes_link(nodes)
+
+    nodes = split_nodes_delimiter(nodes, "**", TextType.BOLD)
+    nodes = split_nodes_delimiter(nodes, "_", TextType.ITALIC)
+    nodes = [n for n in nodes if not (n.text_type == TextType.TEXT and n.text == "")]
+    return nodes
+
