@@ -156,6 +156,7 @@ def test_split_image_single_middle(self):
         out,
     )
 
+
 def test_split_image_none(self):
     node = TextNode("just text", TextType.TEXT)
     out = split_nodes_image([node])
