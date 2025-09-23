@@ -1,5 +1,7 @@
 from typing import Tuple, List
 import re
+import textwrap
+
 
 from  delimiter import text_to_textnodes
 from htmlnode import text_node_to_html_node  # or wherever it's defined
@@ -41,11 +43,15 @@ def parse_heading_block(block: str) -> Tuple[int, str]:
     return level, text
 
 
-def parse_code_block(block:str) -> str :
+def parse_code_block(block: str) -> str:
     lines = block.splitlines()
-    if len(lines) >= 2 and lines[0].startswith("```") and lines[-1].startswith("```"):
-        lines = lines[1:-1]
-    return "\n".join(lines)
+    if len(lines) >= 2 and lines[0].lstrip().startswith("```") and lines[-1].strip() == "```":
+        inner_text = textwrap.dedent("\n".join(lines[1:-1]))
+    else:
+        inner_text = "\n".join(lines)
+    if not inner_text.endswith("\n"):
+        inner_text += "\n"
+    return inner_text
 
 
 def parse_list_items(block:str, ordered=False) -> List[str]:

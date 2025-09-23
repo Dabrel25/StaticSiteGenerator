@@ -2,7 +2,7 @@ from enum import Enum
 import re
 from typing import List
 from helpers import *
-from
+
 
 from src.htmlnode import HTMLNode
 
@@ -80,13 +80,15 @@ def markdown_to_html_nodes(markdown: str):
             kids = text_to_children(text)
             children.append(HTMLNode(tag=f"h{level}", children=kids))
 
+
         elif bt == BlockType.PARAGRAPH:
             text = paragraph_text(block)
-            kids = text_to_children(text)
-            children.append(HTMLNode(tag="p", children=kids))
+            if text:  # only if non-empty
+                kids = text_to_children(text)
+                children.append(HTMLNode(tag="p", children=kids))
 
         elif bt == BlockType.QUOTE:
-            text = paragraph_text(block)
+            text = clean_quote_block(block)
             kids = text_to_children(text)
             children.append(HTMLNode(tag="blockquote", children=kids))
 

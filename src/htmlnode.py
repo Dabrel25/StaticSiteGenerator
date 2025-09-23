@@ -1,13 +1,24 @@
 from textnode import TextNode,TextType
 
+# python
 class HTMLNode:
-    def __init__(self, tag: str = None , value: str=None, children: list = None, props: dict = None):
+    def __init__(self, tag=None, value=None, children=None, props=None):
         self.tag = tag
         self.value = value
-        self.children = children
+        self.children = children  # keep None if not provided
         self.props = props
+
     def to_html(self):
-        raise NotImplementedError()
+        if self.tag is None:
+            return self.value or ""
+        if self.tag == "img":
+            return f'<img{self.props_to_html()}/>'
+        inner = ""
+        if self.children:
+            inner = "".join(child.to_html() for child in self.children)
+        elif self.value is not None:
+            inner = self.value
+        return f"<{self.tag}{self.props_to_html()}>{inner}</{self.tag}>"
     def props_to_html(self):
         props_strings = ""
         if not self.props:
