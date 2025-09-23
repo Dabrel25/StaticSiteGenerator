@@ -1,12 +1,12 @@
 import re
 
-from src.textnode import TextType, TextNode
+from textnode import TextType, TextNode
 
 
 def split_nodes_delimiter(old_nodes,delimiter,text_type):
     nodes = []
     for old_node in old_nodes:
-        if old_node.text_type is not TextType.text:
+        if old_node.text_type != TextType.TEXT:
             nodes.append(old_node)
 
         else:

@@ -5,10 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0849c01c-5b34-4ab4-a5dd-0ee69c24cf41" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/markdown_blocks.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test_markdown_blocks.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/helpers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/delimiter.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/delimiter.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test_delimiter.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_delimiter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/markdown_blocks.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/markdown_blocks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test_markdown_blocks.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_markdown_blocks.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +59,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
+    "Shell Script.test.sh.executor": "Run",
     "git-widget-placeholder": "main",
     "ignore_missing_gitignore": "true",
     "junie.onboarding.icon.badge.shown": "true",
@@ -68,7 +70,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-b3ae9b5d7125-f0eec537fc84-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-252.23892.439" />
+        <option value="bundled-python-sdk-ce6832f46686-7b97d883f26b-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-252.25557.178" />
       </set>
     </attachedChunks>
   </component>
@@ -81,5 +83,16 @@
       <updated>1756630396703</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
